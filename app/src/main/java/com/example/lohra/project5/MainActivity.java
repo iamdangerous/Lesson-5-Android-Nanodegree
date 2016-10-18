@@ -1,6 +1,7 @@
 package com.example.lohra.project5;
 
 import android.animation.Animator;
+import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
@@ -34,41 +35,45 @@ public class MainActivity extends AppCompatActivity {
     public void OnClickBtn(View v){
 
         int accent = ContextCompat.getColor(this,R.color.colorAccent);
-//        boolean isAccent = ((ColorDrawable)v.getBackground() !=null ) && (((ColorDrawable)v.getBackground()).getColor() == ContextCompat.getColor(this,R.color.colorAccent));
+//        v.getBackground() ;
+//        ContextCompat.getDrawable(this,R.color.colorAccent)
+        boolean isAccent = (v.getBackground() !=null ) && ((v.getBackground()) == ContextCompat.getDrawable(this,R.color.colorAccent));
 
 //        boolean isAccent = ((v.getBackground()) != null && ((ColorDrawable)v.getBackground()).getColor() == accent);
 //
 //        v.getBackground().get
 
-        boolean isAccent = false;
+
+//        boolean isAccent = false;
                 if(v.getBackground()!=null){
 
                     if(v.getBackground() instanceof ColorDrawable){
-                        Log.d("Main","Instance of Color drawable");
-//                        if(((ColorDrawable)v.getBackground()).getColor() == accent){
-//                            isAccent = true;
-//                        }else isAccent = false;
+                        Log.d("Main","Instance of Color drawable, isAccent="+String.valueOf(isAccent));
+                        if(((ColorDrawable)v.getBackground()).getColor() == accent){
+                            isAccent = true;
+                        }else isAccent = false;
                     }
 
                     if(v.getBackground() instanceof RippleDrawable){
-                        Log.d("Main","Instance of Ripple drawable");
+                        Log.d("Main","Instance of Ripple drawable, isAccent="+String.valueOf(isAccent));
+//                        v.getBackground().getColorFilter();
                     }
                 }
 
 
-//        int finalRadious =(int) Math.hypot(v.getWidth()/2,v.getHeight()/2);
-//
-//        if(isAccent){
-//            v.setBackgroundColor(ContextCompat.getColor(this,R.color.colorBlue));
-//        }else {
-//
-//            Animator animator =
-//                    null;
-//            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-//                animator = ViewAnimationUtils.createCircularReveal(v,(int)v.getWidth()/2,(int)v.getHeight()/2,0,finalRadious);
-//            }
-//            v.setBackgroundColor(ContextCompat.getColor(this,R.color.colorAccent));
-//                    animator.start();
-//        }
+        int finalRadious =(int) Math.hypot(v.getWidth()/2,v.getHeight()/2);
+
+        if(isAccent){
+            v.setBackgroundColor(ContextCompat.getColor(this,R.color.colorBlue));
+        }else {
+
+            Animator animator =
+                    null;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                animator = ViewAnimationUtils.createCircularReveal(v,(int)v.getWidth()/2,(int)v.getHeight()/2,0,finalRadious);
+            }
+            v.setBackgroundColor(ContextCompat.getColor(this,R.color.colorAccent));
+                    animator.start();
+        }
     }
 }
