@@ -15,7 +15,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"
-        style="@style/MyAwesomeStyle"/>
+        style="@style/MyAwesomeStyle"
+        android:typeface="normal"
+        android:textAllCaps="false"
+        android:lineSpacingExtra="8sp"
+        android:textSize="18sp"
+        android:fontFamily="sans-serif-thin" />
 
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
