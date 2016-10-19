@@ -2,27 +2,46 @@ package com.example.lohra.project5;
 
 import android.animation.Animator;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.BitmapCompat;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewAnimationUtils;
+import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
     AppCompatButton btn;
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         btn = (AppCompatButton)findViewById(R.id.btn);
+        imageView = (ImageView)findViewById(R.id.imageView) ;
+
+        Drawable drawable = ContextCompat.getDrawable(this,R.mipmap.ic_launcher);
+
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.mipmap.ic_launcher);
+        RoundedBitmapDrawable roundedBitmapDrawable =
+                RoundedBitmapDrawableFactory.create(this.getResources(),bitmap);
+        roundedBitmapDrawable.setCircular(true);
+
+        imageView.setImageBitmap(roundedBitmapDrawable.getBitmap());
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
